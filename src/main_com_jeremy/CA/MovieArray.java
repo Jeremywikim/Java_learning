@@ -1,6 +1,7 @@
 /*
 * MovieArray
  */
+package main_com_jeremy.CA;
 import java.util.Objects;
 
 //

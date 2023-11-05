@@ -1,6 +1,7 @@
 /*
 * Movie
 */
+package main_com_jeremy.CA;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 

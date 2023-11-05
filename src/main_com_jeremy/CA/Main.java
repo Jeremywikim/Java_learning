@@ -1,13 +1,7 @@
-//public class Main {
-//    public static void main(String[] args) {
-//        //
-//        JOptionPaneMultiInput myMultiInput = new JOptionPaneMultiInput();
-//
-//    }
-//}
-
-
-
+/*
+ * Main.java
+ */
+package main_com_jeremy.CA;
 
 class Main {
     public static void main(String[] args) {
@@ -15,9 +9,7 @@ class Main {
         MovieArray myMA = new MovieArray();
         myMA.myLoop();
 
-
-
     }
 }
 
-//
+
