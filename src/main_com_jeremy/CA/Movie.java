@@ -22,10 +22,24 @@ class Movie  {
     }
 
     // setDuration
+//    public void setDuration() {
+//        System.out.println("Please enter duration(mins) of the movie");
+//        this.duration = doubleInput();
+//
+//    }
+
     public void setDuration() {
-        System.out.println("Please enter duration(mins) of the movie");
-        this.duration = doubleInput();
+        Double duration ;
+        while(true){
+            System.out.println("Please enter duration(mins between (0-1000)) of the movie");
+            duration = doubleInput();
+            if(duration>0 && duration<=1000){
+                this.duration = duration;
+                break;
+            }// if
+        }
     }
+
 
     public Double getRating() {
         return rating;
