@@ -1,11 +1,10 @@
-/*
-* Movie
-*/
-package main_com_jeremy.CA;
+package main_com_jeremy.CA;/*
+ * Movie
+ */
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-class Movie  {
+class Movie implements Comparable<Movie> {
     // declaration
     protected String title;
     protected Double duration, rating;
@@ -22,24 +21,10 @@ class Movie  {
     }
 
     // setDuration
-//    public void setDuration() {
-//        System.out.println("Please enter duration(mins) of the movie");
-//        this.duration = doubleInput();
-//
-//    }
-
     public void setDuration() {
-        Double duration ;
-        while(true){
-            System.out.println("Please enter duration(mins between (0-1000)) of the movie");
-            duration = doubleInput();
-            if(duration>0 && duration<=1000){
-                this.duration = duration;
-                break;
-            }// if
-        }
+        System.out.println("Please enter duration(mins) of the movie");
+        this.duration = input(Double.class);
     }
-
 
     public Double getRating() {
         return rating;
@@ -50,7 +35,7 @@ class Movie  {
         Double rate ;
         while(true){
             System.out.println("Please enter rating(0-10) of the movie ");
-            rate = doubleInput();
+            rate = input(Double.class);
             if(rate>=0 && rate<=10){
                 this.rating = rate;
                 break;
@@ -67,7 +52,7 @@ class Movie  {
     // setTitle
     public void setTitle() {
         System.out.println("Please enter title of the movie");
-        this.title = stringInput();
+        this.title = input(String.class);
     }
 
     public int getYearOfRelease() {
@@ -79,7 +64,7 @@ class Movie  {
         int year ;
         while(true){
             System.out.println("Please enter release year(1900-2024) of the movie ");
-            year = intInput();
+            year = input(Integer.class);
             if(year>=1900 && year<=2024){
                 this.yearOfRelease = year;
                 break;
@@ -90,6 +75,8 @@ class Movie  {
     }// setYearOfRelease
 
     // toString
+
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -100,45 +87,31 @@ class Movie  {
                 '}';
     }
 
+    @Override
+    public int compareTo(Movie other) {
+        // Implement natural ordering based on duration
+        return Double.compare(this.duration, other.duration);
+    }
 
     // input
-    public int intInput() {
+    public<T> T input(Class<T> c) {
 
         while (true) {
             try {
-                System.out.print("Enter an Int: ");
-                return scanner.nextInt();
+                if(c==Double.class) {
+                    System.out.print("Enter an double: ");
+                    return c.cast(scanner.nextDouble());
+                }
+                else if(c==String.class){
+                    System.out.print("Enter an string: ");
+                    return c.cast(scanner.nextLine());
+                }else if(c==Integer.class) {
+                    System.out.print("Enter an Int: ");
+                    return c.cast(scanner.nextInt());
+                }
             }
             catch (InputMismatchException e) {
-                System.out.println("Invalid input, Please enter an integer !");
-                scanner.nextLine();  // Clear the invalid input from the scanner
-            }
-        }
-    }
-
-    public Double doubleInput() {
-
-        while (true) {
-            try {
-                System.out.print("Enter an double: ");
-                return scanner.nextDouble();
-            }
-            catch (InputMismatchException e) {
-                System.out.println("Invalid input, Please enter an Double !");
-                scanner.nextLine();  // Clear the invalid input from the scanner
-            }
-        }
-    }
-
-    public String stringInput() {
-
-        while (true) {
-            try {
-                System.out.print("Enter an string: ");
-                return scanner.nextLine();
-            }
-            catch (InputMismatchException e) {
-                System.out.println("Invalid input, Please enter an string !");
+                System.out.println("Invalid input. Please enter an "+c);
                 scanner.nextLine();  // Clear the invalid input from the scanner
             }
         }
